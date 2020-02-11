@@ -401,7 +401,17 @@ public class GlusterFileSystemProvider extends FileSystemProvider {
 
     @Override
     public <V extends FileAttributeView> V getFileAttributeView(Path path, Class<V> vClass, LinkOption... linkOptions) {
-        return null;
+        GlusterPath gfsPath = GlusterPath.toGlusterPath(path);
+        GlusterFileSystem fs = (GlusterFileSystem) getFileSystem(path.toUri());
+        boolean followLinks = Util.followLinks(linkOptions);
+        if(vClass == null) {
+            throw new NullPointerException();
+        } else if (vClass == GlusterFileAttributeView.class) {
+            // only support posix attributes
+            return (V) new GlusterFileAttributeView(fs, gfsPath);
+        } else {
+            return null;
+        }
     }
 
     @Override

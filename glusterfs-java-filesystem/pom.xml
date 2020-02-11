@@ -34,9 +34,21 @@
     </build>
 
     <dependencies>
+        <!--<dependency>-->
+            <!--<groupId>com.peircean.libgfapi-jni</groupId>-->
+            <!--<artifactId>libgfapi-jni</artifactId>-->
+            <!--<version>1.0.5-SNAPSHOT</version>-->
+        <!--</dependency>-->
+
         <dependency>
             <groupId>com.peircean.libgfapi-jni</groupId>
-            <artifactId>libgfapi-all</artifactId>
+            <artifactId>libgfapi-jni</artifactId>
+            <version>1.0.5-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.peircean.libgfapi-jni</groupId>
+            <artifactId>libgfapi-linux64</artifactId>
             <version>1.0.5-SNAPSHOT</version>
         </dependency>
 

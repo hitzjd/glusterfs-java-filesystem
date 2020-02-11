@@ -106,6 +106,9 @@ public class GlusterFileChannel extends FileChannel {
 		if (read < 0) {
 			throw new IOException(UtilJNI.strerror());
 		}
+		if (read == 0) {
+			return -1;
+		}
 		position += read;
 		byteBuffer.position((int)read);
 		return (int) read;
@@ -249,7 +252,7 @@ public class GlusterFileChannel extends FileChannel {
 	@Override
 	public void force(boolean b) throws IOException {
 		guardClosed();
-		int fsync = GLFS.glfs_fsync(fileptr);
+		int fsync = GLFS.glfs_fsync(fileptr, null, null);
 		if (0 != fsync) {
 			throw new IOException("Unable to fsync");
 		}

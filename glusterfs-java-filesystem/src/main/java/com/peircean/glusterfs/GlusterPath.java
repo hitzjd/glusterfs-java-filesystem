@@ -326,6 +326,16 @@ public class GlusterPath implements Path {
         return parts.length - otherParts.length;
     }
 
+    static GlusterPath toGlusterPath(Path path) {
+        if (path == null) {
+            throw new NullPointerException();
+        } else if (!(path instanceof GlusterPath)) {
+            throw new ProviderMismatchException();
+        } else {
+            return (GlusterPath) path;
+        }
+    }
+
     public String toString() {
         return /*fileSystem.toString() +*/ getString();
     }
